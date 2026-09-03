@@ -1,0 +1,563 @@
+/* ==========================================================================
+   SOLVIS MUKESH PAHUJA - PREMIUM SILVER 3D-APPEARANCE DIGITAL CARD
+   Optical 3D Depth + Continuous Silver Light Sweep Animation
+   Inside-the-Card Language Switcher (EN | العربية)
+   Trust-Building Quote Section (Single Screen Mobile Fit)
+   ========================================================================== */
+
+:root {
+  /* Studio Backdrop */
+  --bg-studio: #11151f;
+
+  /* 3D Silver Metallic Gradients */
+  --silver-plate: linear-gradient(145deg, 
+    #ffffff 0%, 
+    #f1f5f9 15%, 
+    #e2e8f0 35%, 
+    #cbd5e1 50%, 
+    #94a3b8 65%, 
+    #f8fafc 82%, 
+    #cbd5e1 100%
+  );
+
+  --silver-inner: linear-gradient(160deg, 
+    rgba(255, 255, 255, 0.96) 0%, 
+    rgba(241, 245, 249, 0.92) 30%, 
+    rgba(226, 232, 240, 0.90) 65%, 
+    rgba(203, 213, 225, 0.95) 100%
+  );
+
+  --silver-btn-plate: linear-gradient(145deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+  --titanium-cta: linear-gradient(145deg, #1e293b 0%, #0f172a 65%, #334155 100%);
+
+  /* Typography */
+  --text-dark: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+
+  /* Accents */
+  --color-call: #2563eb;
+  --color-wa: #16a34a;
+  --color-mail: #db2777;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --transition: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  height: 100%;
+  font-size: 16px;
+}
+
+html[dir="rtl"] {
+  font-family: 'Cairo', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background-color: var(--bg-studio);
+  color: var(--text-dark);
+  height: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: env(safe-area-inset-top, 0.5rem) env(safe-area-inset-right, 0.85rem) env(safe-area-inset-bottom, 0.5rem) env(safe-area-inset-left, 0.85rem);
+}
+
+/* Ambient Studio Light Background */
+.ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 50% 20%, rgba(203, 213, 225, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 20% 85%, rgba(148, 163, 184, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Screen Stage (Fits single mobile screen) */
+.screen-stage {
+  width: 100%;
+  max-width: 395px;
+  height: 100%;
+  max-height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   3D-APPEARANCE SILVER METALLIC CARD (Static, with Sweep Shimmer)
+   ========================================================================== */
+.silver-card {
+  position: relative;
+  background: var(--silver-inner);
+  border-radius: var(--radius-lg);
+  padding: 1.15rem 1.15rem 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 0;
+  gap: 0.65rem;
+  overflow: hidden;
+
+  /* 3D Bevel & Multi-Tier Depth Shadows */
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.65),
+    0 10px 20px -5px rgba(0, 0, 0, 0.4),
+    inset 0 2px 3px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 3px rgba(100, 116, 139, 0.35),
+    0 0 0 1px rgba(148, 163, 184, 0.4);
+}
+
+/* Brushed Metal Grain Effect */
+.silver-grain-layer {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0px,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.5;
+}
+
+/* Continuous Sweeping Silver Light Shine (Left to Right) */
+.silver-light-sweep {
+  position: absolute;
+  top: -50%;
+  left: -120%;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.15) 35%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.15) 65%,
+    transparent 80%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: overlay;
+  animation: shine-sweep 4.5s infinite ease-in-out;
+}
+
+@keyframes shine-sweep {
+  0% { left: -120%; opacity: 0; }
+  15% { opacity: 0.9; }
+  45% { left: 160%; opacity: 0.9; }
+  46%, 100% { left: 160%; opacity: 0; }
+}
+
+/* ==========================================================================
+   1. CARD INNER HEADER (Integrated Language Switcher)
+   ========================================================================== */
+.card-inner-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+html[dir="rtl"] .card-inner-header {
+  justify-content: flex-start;
+}
+
+.header-spacer {
+  flex: 1;
+}
+
+/* Inside-the-card Language Switcher */
+.card-lang-switch {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.inner-lang-btn {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.inner-lang-btn.active {
+  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.lang-divider {
+  font-size: 0.65rem;
+  color: #cbd5e1;
+}
+
+/* ==========================================================================
+   2. PROFILE HEADER
+   ========================================================================== */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.avatar-frame {
+  position: relative;
+  margin-bottom: 0.45rem;
+}
+
+.silver-bezel {
+  width: 74px;
+  height: 74px;
+  border-radius: var(--radius-full);
+  padding: 3px;
+  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 50%, #ffffff 100%);
+  box-shadow: 
+    0 6px 14px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.silver-bezel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+  display: block;
+  background: #cbd5e1;
+}
+
+.active-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #4ade80 0%, #16a34a 100%);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 6px rgba(22, 163, 74, 0.8);
+}
+
+html[dir="rtl"] .active-dot {
+  right: auto;
+  left: 4px;
+}
+
+.identity-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  line-height: 1.2;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.user-subtitle {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 0.12rem;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   3. 4 ACTION BUTTONS (3D Inset Beveled Finish)
+   ========================================================================== */
+.buttons-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.48rem;
+  flex: 1;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.card-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.68rem 0.9rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  /* 3D Bevel & Shadow */
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.card-btn:active {
+  transform: scale(0.98);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-sheen {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-25deg);
+  transition: 0.6s ease;
+  pointer-events: none;
+}
+
+.card-btn:hover .btn-sheen {
+  left: 140%;
+}
+
+.btn-icon-plate {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.btn-icon-plate svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+html[dir="rtl"] .btn-labels {
+  align-items: flex-start;
+  text-align: right;
+}
+
+.label-primary {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.label-secondary {
+  font-size: 0.72rem;
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.chevron-icon {
+  width: 15px;
+  height: 15px;
+  color: #64748b;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+html[dir="rtl"] .chevron-icon {
+  transform: rotate(180deg);
+}
+
+/* 1. Save Contact: Deep Titanium 3D CTA */
+.card-btn.btn-save {
+  background: var(--titanium-cta);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 6px 14px rgba(15, 23, 42, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+}
+
+.card-btn.btn-save .btn-icon-plate {
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.card-btn.btn-save .label-primary { color: #ffffff; }
+.card-btn.btn-save .label-secondary { color: #cbd5e1; }
+.card-btn.btn-save .chevron-icon { color: rgba(255, 255, 255, 0.7); }
+
+/* 2. Call Button */
+.card-btn.btn-call {
+  background: var(--silver-btn-plate);
+}
+.card-btn.btn-call .icon-call {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: var(--color-call);
+}
+.card-btn.btn-call .label-primary { color: var(--text-dark); }
+.card-btn.btn-call .label-secondary { color: var(--text-muted); }
+
+/* 3. WhatsApp Button */
+.card-btn.btn-wa {
+  background: var(--silver-btn-plate);
+}
+.card-btn.btn-wa .icon-wa {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  color: var(--color-wa);
+}
+.card-btn.btn-wa .label-primary { color: var(--text-dark); }
+.card-btn.btn-wa .label-secondary { color: var(--text-muted); }
+
+/* 4. Email Button */
+.card-btn.btn-mail {
+  background: var(--silver-btn-plate);
+}
+.card-btn.btn-mail .icon-mail {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+  color: var(--color-mail);
+}
+.card-btn.btn-mail .label-primary { color: var(--text-dark); }
+.card-btn.btn-mail .label-secondary { color: var(--text-muted); }
+
+/* ==========================================================================
+   4. TRUST-BUILDING QUOTE FOOTER
+   ========================================================================== */
+.trust-quote-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.65rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.quote-icon {
+  width: 14px;
+  height: 14px;
+  color: #64748b;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.quote-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #334155;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+html[dir="rtl"] .quote-text {
+  font-style: normal;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.toast-popup {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-popup.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+}
