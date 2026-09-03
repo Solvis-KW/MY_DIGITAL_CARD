@@ -9,7 +9,7 @@ const CARD_CONFIG = {
   company: "Technology & Product Management",
   location: "Kuwait (Open to Remote & Global Roles)",
   status: "Available for new projects & roles",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+  avatar: "profile.jpeg",
   bio: "Passionate about building scalable digital solutions, high-performance web systems, and driving product innovation from concept to launch.",
 
   // Contact Information
